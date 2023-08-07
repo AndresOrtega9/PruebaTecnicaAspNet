@@ -1,0 +1,33 @@
+﻿@model List<DEVELOP_3.Models.Producto>
+
+<h2>Catalogo</h2>
+<div style="display:flex;justify-content:flex-end;margin-bottom:10px">
+    <a href="@Url.Action("ListarProductosEnCarrito", "Carrito")"
+        style="background-color: yellowgreen" class="btn btn-toolbar">Mi carrito
+    </a>
+</div>
+<form method="post" action="@Url.Action("Catalogo", "Producto")">
+    <table class="table">
+        <tr>
+            <th>Codigo</th>
+            <th>Descripcion</th>
+            <th>Unidad de Medida</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+        </tr>
+        @for (int i = 0; i < Model.Count; i++)
+        {
+            <tr>
+                <td style="display:none"><input style="background-color:white; border:0" type="hidden" name="productosSeleccionados[@i].Id" value="@Model[i].Id" readonly /></td>
+                <td>@Html.DisplayFor(model => model[i].Codigo)</td>
+                <td>@Html.DisplayFor(model => model[i].Descripcion)</td>
+                <td>@Html.DisplayFor(model => model[i].Unidad_Medida)</td>
+                <td>
+                    <input style="border:none" type="number" name="productosSeleccionados[@i].Costo" value="@Model[i].Costo" readonly>
+                </td>
+                <td><input type="number" name="productosSeleccionados[@i].Cantidad"></td>
+            </tr>
+        }
+    </table>
+    <input class="btn btn-primary" type="submit" value="Agregar al carrito">
+</form>

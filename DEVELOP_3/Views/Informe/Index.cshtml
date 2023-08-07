@@ -1,0 +1,35 @@
+﻿@model IEnumerable<DEVELOP_3.Models.Producto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Informe de los 3 productos con mayor valor</h2>
+<table class="table">
+    <tr>
+        <td>Codigo</td>
+        <td>Imagen</td>
+        <td>Descripcion</td>
+        <td>U/Medida</td>
+        <td>Costo</td>
+    </tr>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Codigo)
+        </td>
+        <td>
+            <img src="@Html.DisplayFor(modelItem => item.Imagen)" alt=" " style="width:100%;height:100%;" />
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Unidad_Medida)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Costo)
+        </td>
+    </tr>
+}
+</table>
